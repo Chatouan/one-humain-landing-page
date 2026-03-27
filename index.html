@@ -1,382 +1,372 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Once Human | Official Price Check & Cinematic Overview</title>
-    
-    <meta name="description" content="Explore the supernatural world of Once Human. Check official pricing, view gameplay, and see current availability for US & UK.">
-    
-    <!-- Frameworks -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">WACH N ZID HADI TEMA MAY W9A3 WALO : <!-- update -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Once Human | WIN ONLY | Official Survival Experience</title>
+    <meta name="description" content="Play Once Human on Windows PC. Explore a dark post-apocalyptic open world, build your base, and fight supernatural threats." />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        ohDark: '#050507',
-                        ohCard: '#0f0f12',
-                        ohAccent: '#ef4444',
-                        ohBorder: 'rgba(239, 68, 68, 0.2)',
+                        brand: {
+                            red: '#ff4d6d',
+                            darkRed: '#800f2f',
+                            black: '#050505',
+                            zinc: '#0a0c10'
+                        }
                     },
                     fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                        display: ['"Oswald"', 'sans-serif'],
-                    },
+                        heading: ['Orbitron', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
                 }
             }
-        }
+        };
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap');
-        
-        body { background-color: #050507; color: #fafafa; }
+        :root {
+            --accent: #ff4d6d;
+            --accent-glow: rgba(255, 77, 109, 0.45);
+            --bg: #050505;
+            --line: rgba(255, 255, 255, 0.08);
+        }
 
-        .glass-nav {
-            background: rgba(5, 5, 7, 0.8);
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: #fff; overflow-x: hidden; }
+
+        /* Typography & Effects */
+        .text-glow { text-shadow: 0 0 15px var(--accent-glow); }
+        .font-heading { text-transform: uppercase; letter-spacing: -0.02em; }
+
+        /* Smooth Hero Gradient */
+        .hero-overlay {
+            background: linear-gradient(to bottom, 
+                rgba(5,5,5,0.2) 0%, 
+                rgba(5,5,5,0.5) 60%, 
+                rgba(5,5,5,0.9) 90%, 
+                var(--bg) 100%);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .btn-affiliate {
-            background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
-            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.3);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        /* Premium Buttons */
+        .cta-premium {
+            background: linear-gradient(90deg, #800f2f 0%, #ff4d6d 50%, #800f2f 100%);
+            background-size: 200% auto;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
-        .btn-affiliate:hover {
+        .cta-premium:hover {
+            background-position: right center;
+            box-shadow: 0 0 40px rgba(255, 77, 109, 0.8);
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 35px -10px rgba(239, 68, 68, 0.5);
-            filter: brightness(1.1);
         }
 
-        .sticky-bar {
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .sticky-bar.visible { transform: translateY(0); }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .video-overlay {
-            background: linear-gradient(to bottom, rgba(5, 5, 7, 0.2) 0%, rgba(5, 5, 7, 0.7) 60%, #050507 100%);
-        }
-
-        /* Slider Animations */
-        .slide {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1.2s ease-in-out, visibility 1.2s;
-            position: absolute;
-            inset: 0;
-        }
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-            z-index: 10;
-        }
-        .dot {
+        /* Feature Cards */
+        .feature-card {
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .dot.active {
-            background-color: #ef4444;
-            width: 2rem;
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            background: rgba(255, 77, 109, 0.05);
         }
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .feature-card:hover::after { width: 100%; }
+
+        /* Gallery Slider */
+        .gallery-track {
+            height: 600px;
+            border-radius: 4px;
+            border: 1px solid var(--line);
+        }
+        .gallery-slide {
+            position: absolute; inset: 0; opacity: 0;
+            transition: opacity 0.8s ease, transform 1.2s ease;
+            transform: scale(1.1);
+        }
+        .gallery-slide.active { opacity: 1; transform: scale(1); }
         
-        /* Premium Overlay for Slider */
-        .slide-overlay {
-            background: linear-gradient(0deg, rgba(5,5,7,0.8) 0%, rgba(5,5,7,0) 40%);
+        /* Sticky Bar Animation */
+        #sticky-bar {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #sticky-bar.visible { transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .gallery-track { height: 350px; }
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="font-sans antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 glass-nav h-20 flex items-center">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-ghost text-ohAccent text-2xl"></i>
-                <span class="font-display font-bold text-xl uppercase tracking-widest">Once Human</span>
+    <!-- TRACKING CONFIG -->
+    <script>
+        const TRACKING_LINK = "https://to.wendiro.com/u?k=24c3cf9a5dde4dd896352d1314e9aacd&via=26328";
+        const ALLOWED_GEOS = ["DE","FR","UK","AU","NL","AT","NO","CH","NZ","CA","US"];
+        
+        function trackClick(label) {
+            console.log('Tracking click:', label);
+            // Integration with GTM or Analytics here
+        }
+    </script>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[110] bg-black/80 backdrop-blur-xl border-b border-white/10 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-10 h-10 bg-brand-red rotate-45 flex items-center justify-center shadow-[0_0_20px_var(--accent-glow)] transition-transform group-hover:rotate-[135deg]">
+                    <span class="rotate-[-45deg] group-hover:rotate-[-135deg] transition-transform font-black text-white text-xs">OH</span>
+                </div>
+                <span class="font-heading font-black text-2xl tracking-tighter">ONCE HUMAN</span>
             </div>
-            <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="#gameplay" class="hover:text-white transition">Gameplay</a>
-                <a href="#offer" class="hover:text-white text-ohAccent transition">Official Price</a>
-            </div>
-            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-ohAccent hover:text-white transition-all">Check Official Price</a>
+
+            <a href="#" onclick="trackClick('Nav_CTA'); window.location.href=TRACKING_LINK" class="hidden md:block text-[11px] font-black bg-white text-black px-6 py-2.5 hover:bg-brand-red hover:text-white transition-all uppercase tracking-[0.2em]">
+                Play Free Now
+            </a>
         </div>
     </nav>
 
-    <!-- 1. Hero Section -->
+    <!-- HERO SECTION -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="https://www.oncehuman.game/pc/fab/20250114111146/img/kv20260112_1f38dace.jpg">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
                 <source src="https://oncehuman.v.easebar.com/2026/0119/20260119.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 video-overlay"></div>
+            <div class="absolute inset-0 hero-overlay z-10"></div>
         </div>
-        
-        <div class="container relative z-10 mx-auto px-6 text-center reveal active">
-            <div class="inline-flex items-center px-5 py-2 border border-white/10 bg-black/40 backdrop-blur-md text-gray-300 rounded-full text-[10px] font-bold uppercase mb-8 tracking-[0.3em]">
-                <span class="w-2 h-2 bg-ohAccent rounded-full mr-3 animate-pulse"></span> Authorized Review & Bridge
+
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto pt-20">
+            <div class="inline-flex items-center gap-3 px-5 py-2 mb-8 glass rounded-full animate-pulse">
+                <svg class="w-4 h-4 text-brand-red" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 17.1L9.75 21.9V12.3H0v8.249zM10.5 2L24 0v11.7H10.5V2zm0 19.9L24 24V12.3H10.5v9.6z"/>
+                </svg>
+                <span class="text-[10px] md:text-[12px] font-bold tracking-[0.4em] uppercase text-white/90">WINDOWS PC • OFFICIAL RELEASE</span>
             </div>
-            <h1 class="font-display text-5xl md:text-[7rem] font-bold uppercase mb-8 leading-[0.9] tracking-tighter">
-                Evolution <br> <span class="text-ohAccent">Transcended.</span>
+
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading font-black mb-6 leading-[0.85] tracking-tighter italic italic-text-glow">
+                SURVIVE <br><span class="text-brand-red">ONCE HUMAN</span>
             </h1>
-            <p class="text-lg md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-                Explore the official Once Human experience and check current availability for your region.
+
+            <p class="text-lg md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                Step into a world corrupted by Stardust. Build, fight, and discover the truth in the ultimate post-apocalyptic open-world survival.
             </p>
-            
-            <div class="flex flex-col items-center gap-6">
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="btn-affiliate px-14 py-6 rounded-2xl text-2xl font-display font-bold uppercase tracking-[0.1em] flex items-center gap-5">
-                    Check Official Price <i class="fa-solid fa-chevron-right text-xs"></i>
+
+            <div class="flex flex-col items-center gap-10">
+                <a href="#" onclick="trackClick('Hero_Main_CTA'); window.location.href=TRACKING_LINK" class="cta-premium px-16 py-7 rounded-sm font-heading font-black text-2xl md:text-3xl uppercase tracking-tighter group">
+                    <span>Play Free Now</span>
                 </a>
-                <div class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">
-                    US & UK availability check
-                </div>
-                <div class="flex items-center gap-8 mt-4 opacity-40">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-5 brightness-200 grayscale">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-4 brightness-200 grayscale">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Klarna_Logo.svg" alt="Klarna" class="h-5 brightness-200 grayscale">
+
+                <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold text-white/40 tracking-[0.3em] uppercase">
+                    <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-red rounded-full"></div> OPEN WORLD</div>
+                    <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-red rounded-full"></div> CO-OP SQUAD</div>
+                    <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-red rounded-full"></div> BASE BUILDING</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. Expert Verdict -->
-    <section class="py-32 bg-ohDark">
-        <div class="container mx-auto px-6 max-w-5xl text-center reveal">
-            <h2 class="text-ohAccent font-bold uppercase tracking-[0.3em] text-[10px] mb-6">Expert Verdict</h2>
-            <h3 class="text-4xl md:text-6xl font-display font-bold mb-20 uppercase">A New Standard for Survival</h3>
-            <div class="grid md:grid-cols-3 gap-12 text-left">
-                <div class="p-10 bg-ohCard rounded-3xl border border-white/5 relative overflow-hidden group">
-                    <div class="text-ohAccent text-4xl mb-6 font-bold font-display">9.4/10</div>
-                    <h4 class="text-white text-xl font-bold mb-4 uppercase">Visuals</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Unmatched atmospheric detail and lighting optimization for high-end PCs.</p>
+    <!-- QUICK STATS -->
+    <section class="py-10 bg-black border-y border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center group">
+                <div class="text-brand-red font-heading text-xs tracking-widest mb-1 opacity-60">REGIONS</div>
+                <div class="text-lg font-bold">US / EU / AU / CA</div>
+            </div>
+            <div class="text-center group">
+                <div class="text-brand-red font-heading text-xs tracking-widest mb-1 opacity-60">REQUIREMENTS</div>
+                <div class="text-lg font-bold">WINDOWS 10/11</div>
+            </div>
+            <div class="text-center group">
+                <div class="text-brand-red font-heading text-xs tracking-widest mb-1 opacity-60">RATING</div>
+                <div class="text-lg font-bold italic">MOST ANTICIPATED</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-32 px-6 bg-brand-zinc relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-5xl md:text-7xl font-heading font-black mb-6 tracking-tighter uppercase italic leading-none">
+                        Unsettling <br><span class="text-brand-red">Realities</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg">The world is no longer ours. Every creature is a threat, every resource a luxury.</p>
                 </div>
-                <div class="p-10 bg-ohCard rounded-3xl border border-white/5 relative overflow-hidden group">
-                    <div class="text-ohAccent text-4xl mb-6 font-bold font-display">150+</div>
-                    <h4 class="text-white text-xl font-bold mb-4 uppercase">Systems</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Deep crafting and territory progression that evolves with your playstyle.</p>
+                <div class="h-px flex-1 bg-white/10 hidden md:block mx-10 mb-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card glass p-10 rounded-sm">
+                    <div class="text-brand-red font-heading text-4xl mb-6 opacity-20">01</div>
+                    <h3 class="text-xl font-heading font-bold mb-4 uppercase">Stardust Horror</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Face eldritch monsters born from cosmic contamination. Survival isn't just about hunger.</p>
                 </div>
-                <div class="p-10 bg-ohCard rounded-3xl border border-white/5 relative overflow-hidden group">
-                    <div class="text-ohAccent text-4xl mb-6 font-bold font-display">Global</div>
-                    <h4 class="text-white text-xl font-bold mb-4 uppercase">Servers</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Dedicated low-latency servers available for US and UK regions.</p>
+                <div class="feature-card glass p-10 rounded-sm">
+                    <div class="text-brand-red font-heading text-4xl mb-6 opacity-20">02</div>
+                    <h3 class="text-xl font-heading font-bold mb-4 uppercase">Infinite Crafting</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Thousands of combinations for weapons, gear, and gadgets to suit your playstyle.</p>
+                </div>
+                <div class="feature-card glass p-10 rounded-sm">
+                    <div class="text-brand-red font-heading text-4xl mb-6 opacity-20">03</div>
+                    <h3 class="text-xl font-heading font-bold mb-4 uppercase">Territory War</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Build massive strongholds. Protect them from monsters or other players in dynamic events.</p>
+                </div>
+                <div class="feature-card glass p-10 rounded-sm">
+                    <div class="text-brand-red font-heading text-4xl mb-6 opacity-20">04</div>
+                    <h3 class="text-xl font-heading font-bold mb-4 uppercase">Metahumanity</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Evolve your character with supernatural abilities to survive the harshest environments.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Features -->
-    <section id="features" class="py-32 border-t border-white/5 bg-ohDark">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-ohAccent font-bold uppercase tracking-[0.3em] text-[10px] mb-6">World Mechanics</h2>
-                <h3 class="text-4xl md:text-6xl font-display font-bold mb-10 uppercase">Survive the Aberration</h3>
+    <!-- GALLERY -->
+    <section class="py-24 px-6 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative group">
+                <div class="gallery-track relative overflow-hidden shadow-2xl">
+                    <div class="gallery-slide active"><img src="https://i.imgur.com/H31BAhR.png" class="w-full h-full object-cover"></div>
+                    <div class="gallery-slide"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="https://i.imgur.com/s2obYDb.mp4"></video></div>
+                    <div class="gallery-slide"><img src="https://i.imgur.com/uFqL8MV.png" class="w-full h-full object-cover"></div>
+                    <div class="gallery-slide"><img src="https://i.imgur.com/9ChYguv.png" class="w-full h-full object-cover"></div>
+                    <div class="gallery-slide"><img src="https://i.imgur.com/dcRL94p.jpeg" class="w-full h-full object-cover"></div>
+                </div>
+
+                <!-- Slider Nav -->
+                <button id="prevSlide" class="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center hover:bg-brand-red transition-all z-20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button id="nextSlide" class="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center hover:bg-brand-red transition-all z-20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                
+                <div id="galleryDots" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BONUS SECTION -->
+    <section class="py-32 px-6">
+        <div class="max-w-6xl mx-auto relative group">
+            <div class="absolute inset-0 bg-brand-red/20 blur-[120px] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative bg-gradient-to-br from-brand-zinc to-black border border-white/10 rounded-2xl p-12 md:p-20 flex flex-col lg:flex-row items-center gap-16 overflow-hidden">
+                <div class="flex-1 text-center lg:text-left">
+                    <div class="inline-block bg-brand-red text-white px-4 py-1 rounded-sm text-[10px] font-black tracking-widest mb-8 uppercase">Meta-Human Exclusive</div>
+                    <h2 class="text-5xl md:text-6xl font-heading font-black mb-8 leading-[0.9] italic uppercase">
+                        Survival <br><span class="text-brand-red">Starter Pack</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-10 max-w-xl">Join now and unlock the Digital Survival Handbook to master your first 24 hours in the contamination zone.</p>
+                    
+                    <a href="#" onclick="trackClick('Bonus_CTA'); window.location.href=TRACKING_LINK" class="cta-premium inline-block px-12 py-5 font-heading font-black text-xl uppercase tracking-tighter">
+                        Claim & Play Free
+                    </a>
+                </div>
+                <div class="w-full lg:w-80 h-96 glass rounded-xl flex flex-col items-center justify-center border-white/10 relative">
+                    <div class="text-9xl mb-6 drop-shadow-[0_0_30px_rgba(255,77,109,0.5)]">📖</div>
+                    <div class="font-heading font-bold text-xl tracking-tight text-center px-6 uppercase">Survival Protocol v1.02</div>
+                    <div class="absolute top-4 right-4 text-[10px] text-brand-red font-black">ENCRYPTED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-32 px-6 bg-black border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex justify-center items-center gap-4 mb-12">
+                <div class="w-8 h-8 bg-brand-red rotate-45 flex items-center justify-center"><span class="rotate-[-45deg] font-black text-[10px]">OH</span></div>
+                <span class="font-heading font-black text-2xl tracking-tighter">ONCE HUMAN</span>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-16 reveal">
-                <div class="flex gap-8 p-8 bg-ohCard rounded-3xl border border-white/5">
-                    <div class="shrink-0"><i class="fa-solid fa-shield-halved text-3xl text-ohAccent mt-1"></i></div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-4 uppercase font-display">Tactical Building</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">Design defensive perimeters and automate resource collection anywhere in the wild.</p>
-                    </div>
-                </div>
-                <div class="flex gap-8 p-8 bg-ohCard rounded-3xl border border-white/5">
-                    <div class="shrink-0"><i class="fa-solid fa-radiation text-3xl text-ohAccent mt-1"></i></div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2 uppercase font-display">Cosmic Horror Lore</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">Discover the origin of the Stardust through environmental storytelling.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Cinematic Gameplay Slider -->
-    <section id="gameplay" class="py-32 bg-ohCard overflow-hidden">
-        <div class="container mx-auto px-6 text-center max-w-6xl reveal">
-            <h2 class="text-ohAccent font-bold uppercase tracking-[0.3em] text-[10px] mb-6">Cinematic Showcase</h2>
-            <h3 class="text-4xl md:text-6xl font-display font-bold mb-8 uppercase">Experience the World</h3>
-            
-            <div class="relative w-full max-w-5xl mx-auto mt-16">
-                <div id="mainSlider" class="relative aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-black">
-                    <!-- Slide 1 -->
-                    <div class="slide active">
-                        <img src="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/646892785_934510659088315_1745241850631072048_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=0FeughZtc1EQ7kNvwHVkZ2u&_nc_oc=AdlHRYBI_lRvALHt7xjeXk-CNfEM9gTN-TDHv3U3OvO9lQ73QhYHNYpjpa29i3Co7ziAFz-pqXUrWlcDqMlj1j5A&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=VFSxjytKPmPOl_2JD6g6Jw&_nc_ss=8&oh=00_Afw4YbjzQ8Plr2GsOmHG9FAPjQ2LFkRVG1WDIdHdztqdWw&oe=69B69144" class="w-full h-full object-cover" alt="Once Human Gallery 1">
-                        <div class="absolute inset-0 slide-overlay"></div>
-                        <div class="absolute bottom-10 left-10 text-left">
-                            <span class="text-ohAccent font-bold uppercase tracking-[0.2em] text-[10px]">Territory</span>
-                            <h4 class="text-white font-display text-2xl uppercase font-bold">The Outpost</h4>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <img src="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/645761897_933036295902418_5134622760024636198_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_ohc=SCwaWo_6ArIQ7kNvwG_wKVP&_nc_oc=AdmEIuWHu02HU8BTIOacG2iZmV4OkOLfW2lzhR05qilk2-PDeuoIodDvcyVza-XQixMidEZF4HNbPi5sgEzejvX-&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=K9rh7BrFhEOJBU-lg28u4g&_nc_ss=8&oh=00_Afy47TYgnnmYG7hr-MHnKlAKGKydn-N2W5Z3eQSxEhfJLA&oe=69B6BC00" class="w-full h-full object-cover" alt="Once Human Gallery 2">
-                        <div class="absolute inset-0 slide-overlay"></div>
-                        <div class="absolute bottom-10 left-10 text-left">
-                            <span class="text-ohAccent font-bold uppercase tracking-[0.2em] text-[10px]">Creatures</span>
-                            <h4 class="text-white font-display text-2xl uppercase font-bold">The Deviation</h4>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                        <img src="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/645425557_932843572588357_8141128338050109120_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_ohc=wcvVUFt5XAAQ7kNvwEx-KgW&_nc_oc=AdkJoe-SOcMetpA1k_KNDMFk4t8qO0bqvlSkzytWEulxDz_oBjG2IT3Re7G371nAGZ0z2JA8JoLNSN5oLCz_SgKH&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=aFhN_wWEEFLv4aVI14qMgw&_nc_ss=8&oh=00_Afya4TAQI0mfPP_wz0KFuuB_P1fO288NfPSq_lgM0Fm4Eg&oe=69B6B805" class="w-full h-full object-cover" alt="Once Human Gallery 3">
-                        <div class="absolute inset-0 slide-overlay"></div>
-                        <div class="absolute bottom-10 left-10 text-left">
-                            <span class="text-ohAccent font-bold uppercase tracking-[0.2em] text-[10px]">Exploration</span>
-                            <h4 class="text-white font-display text-2xl uppercase font-bold">Lost Settlements</h4>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="slide">
-                        <img src="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/644081000_930526612820053_8916468555351850300_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=HWkOCwi681sQ7kNvwH4SE2k&_nc_oc=Adl7N4eIEKv37mVEcVZH0YP1NnfBNDBs8xxqGMFMvU2spUZ-J_YZrRTp_tzxaFoZTiTREUZCuFLpimaGdIyUUN9z&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=U3VOcGRbJyVP5_2ckUacmg&_nc_ss=8&oh=00_AfysHRxa_nd7y45NiJjqKt-a_U_7HHrsBKPw1qPj-4CUWQ&oe=69B68FE5" class="w-full h-full object-cover" alt="Once Human Gallery 4">
-                        <div class="absolute inset-0 slide-overlay"></div>
-                        <div class="absolute bottom-10 left-10 text-left">
-                            <span class="text-ohAccent font-bold uppercase tracking-[0.2em] text-[10px]">Survival</span>
-                            <h4 class="text-white font-display text-2xl uppercase font-bold">Endless Night</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center gap-3 mt-10" id="sliderDots">
-                    <button class="dot active w-3 h-3 rounded-full bg-white/20"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-white/20"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-white/20"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-white/20"></button>
-                </div>
-            </div>
-
-            <div class="mt-16 flex flex-col items-center">
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="btn-affiliate px-10 py-5 rounded-2xl text-lg font-display font-bold uppercase tracking-widest flex items-center gap-4 group">
-                    Check Official Price <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Official Offer -->
-    <section id="offer" class="py-32">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <div class="bg-ohCard rounded-[3rem] p-10 md:p-20 border border-ohBorder shadow-2xl reveal relative overflow-hidden">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-16 relative z-10">
-                    <div class="text-left flex-1">
-                        <div class="text-ohAccent font-bold text-xs uppercase tracking-[0.4em] mb-4">Official Edition</div>
-                        <h3 class="text-4xl md:text-5xl font-display font-bold mb-6 uppercase">View Current Offer</h3>
-                        <p class="text-gray-500 mb-10 leading-relaxed font-light">Access the full Once Human experience including latest content.</p>
-                    </div>
-                    <div class="w-full md:w-auto text-center shrink-0">
-                        <div class="bg-black/40 backdrop-blur-md p-10 rounded-3xl border border-white/5">
-                            <span class="text-[10px] text-gray-500 uppercase tracking-widest mb-4 block">Official Price Index</span>
-                            <div class="text-4xl font-display font-bold text-white mb-8 tracking-tighter">SECURE LINK</div>
-                            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="btn-affiliate w-full inline-block px-10 py-5 rounded-xl font-bold uppercase tracking-widest text-xs">
-                                Check Official Price
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-32 bg-ohDark border-t border-white/5">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-center font-display text-4xl font-bold mb-20 uppercase tracking-widest">Essential FAQ</h2>
-            <div class="space-y-6">
-                <div class="p-8 bg-ohCard rounded-2xl border border-white/5">
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest">How do I access the game?</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Click "Check Official Price" to visit the publisher's store.</p>
-                </div>
-                <div class="p-8 bg-ohCard rounded-2xl border border-white/5">
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest">Is the US/UK region supported?</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Yes, the official store provides localized servers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-20 bg-black border-t border-white/5 text-center text-gray-600 text-[10px] uppercase tracking-widest">
-        <div class="container mx-auto px-6">
-            <p>© 2025 GAMERVERSE UK. INDEPENDENT AFFILIATE PARTNER.</p>
+            <p class="text-gray-500 text-[11px] uppercase tracking-[0.3em] leading-loose mb-16 px-10">
+                © 2024 Community fan landing page. This is an affiliate page. Clicking "Play" redirects to the official distribution channel via our tracking link.
+            </p>
         </div>
     </footer>
 
-    <!-- Sticky CTA -->
-    <div id="stickyBar" class="sticky-bar fixed bottom-0 left-0 w-full bg-ohCard/90 backdrop-blur-xl border-t border-ohAccent/30 z-[60] py-5 px-6">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="hidden sm:block">
-                <div class="font-display font-bold text-lg uppercase tracking-widest">Once Human</div>
-                <div class="text-ohAccent text-[10px] font-bold uppercase tracking-[0.2em]">Official Store Availability</div>
+    <!-- STICKY CTA -->
+    <div id="sticky-bar" class="fixed bottom-0 left-0 w-full z-[120] bg-black/90 backdrop-blur-2xl border-t border-white/10 py-5 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+            <div class="hidden lg:block">
+                <div class="font-heading font-black text-xl italic uppercase">Ready to <span class="text-brand-red">Evolve?</span></div>
+                <div class="text-[10px] text-gray-500 font-bold tracking-widest uppercase mt-1">Free Official Windows Version</div>
             </div>
-            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="btn-affiliate flex-1 sm:flex-none px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-xs text-center">
-                Check Official Price
+            <a href="#" onclick="trackClick('Sticky_CTA'); window.location.href=TRACKING_LINK" class="cta-premium flex-1 md:flex-none text-center px-12 py-4 rounded-sm font-heading font-black text-lg uppercase tracking-tighter">
+                Play Free Now
             </a>
         </div>
     </div>
 
     <script>
-        // Scroll Reveal logic
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 120) {
-                    el.classList.add("active");
-                }
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+        /* Slider Logic */
+        const slides = document.querySelectorAll(".gallery-slide");
+        const dotContainer = document.getElementById("galleryDots");
+        let current = 0;
+        let timer;
 
-        // Slider Logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        // Auto-slider interval
-        let slideInterval = setInterval(nextSlide, 5000);
-
-        // Manual Dot Control
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                showSlide(index);
-                slideInterval = setInterval(nextSlide, 5000);
-            });
+        slides.forEach((_, i) => {
+            const dot = document.createElement("button");
+            dot.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-brand-red w-8' : 'bg-white/20 hover:bg-white/40'}`;
+            dot.onclick = () => { goToSlide(i); restartTimer(); };
+            dotContainer.appendChild(dot);
         });
 
-        // Sticky Bar Visibility
-        const stickyBar = document.getElementById('stickyBar');
+        function updateUI() {
+            slides.forEach((s, i) => s.classList.toggle("active", i === current));
+            const dots = dotContainer.querySelectorAll("button");
+            dots.forEach((d, i) => {
+                d.className = `w-2 h-2 rounded-full transition-all ${i === current ? 'bg-brand-red w-8' : 'bg-white/20'}`;
+            });
+        }
+
+        function goToSlide(i) {
+            current = (i + slides.length) % slides.length;
+            updateUI();
+        }
+
+        document.getElementById("nextSlide").onclick = () => { goToSlide(current + 1); restartTimer(); };
+        document.getElementById("prevSlide").onclick = () => { goToSlide(current - 1); restartTimer(); };
+
+        function restartTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => goToSlide(current + 1), 5000);
+        }
+        restartTimer();
+
+        /* Scroll Animation for Sticky Bar */
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 800) {
-                stickyBar.classList.add('visible');
-            } else {
-                stickyBar.classList.remove('visible');
-            }
+            const bar = document.getElementById('sticky-bar');
+            bar.classList.toggle('visible', window.scrollY > 800);
         });
+
+        /* Geo Filter Simple Alert (Optional) */
+        const userLang = navigator.language || navigator.userLanguage;
+        console.log("Detecting locale:", userLang);
     </script>
 </body>
 </html>
